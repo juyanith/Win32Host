@@ -1,0 +1,81 @@
+﻿<Window x:Class="Win32Listbox.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Win32Listbox"
+        mc:Ignorable="d"
+        Title="Hosted Win32 Listbox" Height="450" Width="800">
+    <DockPanel Background="LightGreen">
+        <StackPanel Orientation="Vertical"
+                    Margin="8"
+                    DockPanel.Dock="Right">
+            <Label HorizontalAlignment="Center" Margin="10">Hosted Listbox</Label>
+            <local:ListboxHwndHost x:Name="listboxHost" 
+                                   MessageHook="ControlMsgFilter" 
+                                   Width="200"
+                                   Height="200"/>
+        </StackPanel>
+
+        <StackPanel>
+            <Label HorizontalAlignment="Center"
+                   Margin="0,10,0,0"
+                   FontSize="14"
+                   FontWeight="Bold">
+                Control the Control
+            </Label>
+            <TextBlock Margin="10,10,10,10" >
+                Selected Text: <TextBlock  Name="selectedText"/>
+            </TextBlock>
+            <TextBlock Margin="10,10,10,10" >
+                Number of Items: <TextBlock  Name="numItems"/>
+            </TextBlock>
+
+            <Line X1="0" X2="200"
+                  Stroke="LightYellow"
+                  StrokeThickness="2"
+                  HorizontalAlignment="Center"
+                  Margin="0,20,0,0"/>
+
+            <Label HorizontalAlignment="Center"
+                   Margin="10,10,10,10">
+                Append an Item to the List
+            </Label>
+            <StackPanel Orientation="Horizontal">
+                <Label HorizontalAlignment="Left"
+                       Margin="10,10,10,10">
+                    Item Text
+                </Label>
+                <TextBox HorizontalAlignment="Left"
+                         Name="txtAppend"
+                         Width="200"
+                         Margin="10,10,10,10"/>
+            </StackPanel>
+
+            <Button HorizontalAlignment="Left"
+                    Click="AppendText"
+                    Width="75"
+                    Margin="10,10,10,10">
+                Append
+            </Button>
+
+            <Line X1="0" X2="200"
+                  Stroke="LightYellow"
+                  StrokeThickness="2"
+                  HorizontalAlignment="Center"
+                  Margin="0,20,0,0"/>
+
+            <Label HorizontalAlignment="Center"
+                   Margin="10,10,10,10">
+                Delete the Selected Item
+            </Label>
+
+            <Button Click="DeleteText"
+                    Width="125"
+                    Margin="10,10,10,10"
+                    HorizontalAlignment="Left">
+                Delete
+            </Button>
+        </StackPanel>
+    </DockPanel>
+</Window>
