@@ -18,6 +18,9 @@ namespace Sdl2Example
 
             if (openGL)
             {
+                // SDL doesn't create OpenGL context when using SDL_CreateWindowFrom.
+                // See https://wiki.libsdl.org/SDL_CreateWindowFrom
+                // and https://gamedev.stackexchange.com/a/119903.
                 IntPtr dummy = SDL_CreateWindow(
                     "OpenGL Dummy", 0, 0, 1, 1, 
                     SDL_WindowFlags.SDL_WINDOW_OPENGL | SDL_WindowFlags.SDL_WINDOW_HIDDEN);
@@ -36,14 +39,6 @@ namespace Sdl2Example
             {
                 throw new Sdl2Exception("Failed to create child window. ", true);
             }
-
-            //SDL_SysWMinfo wmInfo = new();
-            //if (SDL_GetWindowWMInfo(SdlWindow, ref wmInfo) == SDL_bool.SDL_TRUE)
-            //{
-            //    Hwnd = wmInfo.info.win.window;
-            //}
-
-            //SDL_SetWindowResizable(SdlWindow, SDL_bool.SDL_TRUE);
         }
 
         public IntPtr Hwnd { get; private set; }
