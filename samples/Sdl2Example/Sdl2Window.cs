@@ -9,24 +9,39 @@ namespace Sdl2Example
     /// </summary>
     internal class Sdl2Window : IDisposable
     {
-        public Sdl2Window(IntPtr hwnd)
+        public Sdl2Window(IntPtr hwnd, bool openGL = false)
         {
             if (SDL_Init(SDL_INIT_VIDEO) < 0)
             {
                 throw new Sdl2Exception("SDL_Init failed. ", true);
             }
 
-            SdlWindow = SDL_CreateWindowFrom(hwnd);
+            if (openGL)
+            {
+                IntPtr dummy = SDL_CreateWindow(
+                    "OpenGL Dummy", 0, 0, 1, 1, 
+                    SDL_WindowFlags.SDL_WINDOW_OPENGL | SDL_WindowFlags.SDL_WINDOW_HIDDEN);
+                var addrStr = dummy.ToString("X");
+                SDL_SetHint(SDL_HINT_VIDEO_WINDOW_SHARE_PIXEL_FORMAT, addrStr);
+                SdlWindow = SDL_CreateWindowFrom(hwnd);
+                SDL_SetHint(SDL_HINT_VIDEO_WINDOW_SHARE_PIXEL_FORMAT, string.Empty);
+                SDL_DestroyWindow(dummy);
+            }
+            else
+            {
+                SdlWindow = SDL_CreateWindowFrom(hwnd);
+            }
+
             if (SdlWindow == IntPtr.Zero)
             {
                 throw new Sdl2Exception("Failed to create child window. ", true);
             }
 
-            SDL_SysWMinfo wmInfo = new();
-            if (SDL_GetWindowWMInfo(SdlWindow, ref wmInfo) == SDL_bool.SDL_TRUE)
-            {
-                Hwnd = wmInfo.info.win.window;
-            }
+            //SDL_SysWMinfo wmInfo = new();
+            //if (SDL_GetWindowWMInfo(SdlWindow, ref wmInfo) == SDL_bool.SDL_TRUE)
+            //{
+            //    Hwnd = wmInfo.info.win.window;
+            //}
 
             //SDL_SetWindowResizable(SdlWindow, SDL_bool.SDL_TRUE);
         }
