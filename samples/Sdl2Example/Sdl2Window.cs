@@ -89,6 +89,16 @@ namespace Sdl2Example
                     Console.WriteLine($"There was an issue with clearing the render surface. {SDL_GetError()}");
                 }
 
+                SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+                var rect = new SDL_Rect()
+                {
+                    x = 50,
+                    y = 50,
+                    w = 200,
+                    h = 200,
+                };
+                SDL_RenderFillRect(renderer, ref rect);
+
                 // Switches out the currently presented render surface with the one we just did work on.
                 SDL_RenderPresent(renderer);
             }
