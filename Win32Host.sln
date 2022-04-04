@@ -12,6 +12,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sdl2Example", "samples\Sdl2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Win32Listbox", "samples\Win32Listbox\Win32Listbox.csproj", "{222D67D6-117D-4A8C-822F-530B3AD67D61}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilkNETExample", "SilkNETExample\SilkNETExample.csproj", "{F652D276-DDDF-4FF0-A23C-81E48F662E53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 		{222D67D6-117D-4A8C-822F-530B3AD67D61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{222D67D6-117D-4A8C-822F-530B3AD67D61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{222D67D6-117D-4A8C-822F-530B3AD67D61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F652D276-DDDF-4FF0-A23C-81E48F662E53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F652D276-DDDF-4FF0-A23C-81E48F662E53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F652D276-DDDF-4FF0-A23C-81E48F662E53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F652D276-DDDF-4FF0-A23C-81E48F662E53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +44,7 @@ Global
 		{6BCD1CC2-5564-4FB6-8461-FF1CA56A8A9E} = {4F751053-40B5-47EF-A319-9F6E02DD447B}
 		{8CF84FA1-6F55-4DF0-BF40-F275D6508BE1} = {DF3534F4-7B32-42A0-98C3-2CB9287A14E8}
 		{222D67D6-117D-4A8C-822F-530B3AD67D61} = {DF3534F4-7B32-42A0-98C3-2CB9287A14E8}
+		{F652D276-DDDF-4FF0-A23C-81E48F662E53} = {DF3534F4-7B32-42A0-98C3-2CB9287A14E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = 20301c69-5952-41bf-96b8-eb34a01bcf23
