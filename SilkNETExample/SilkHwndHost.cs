@@ -19,12 +19,14 @@ namespace SilkNETExample
             //_view = SdlWindowing.CreateFrom((void*)Hwnd, sdlContext);
 
             _view = SdlWindowing.CreateFrom((void*)Hwnd);
+
             _view.FramebufferResize += View_FramebufferResize;
             _view.Resize += View_Resize;
             _view.Render += View_Render;
             _view.Update += View_Update;
 
             _renderTask = new Task(_view.Run, TaskCreationOptions.LongRunning);
+            _renderTask.Start();
         }
 
         private void View_FramebufferResize(Vector2D<int> obj)
@@ -34,12 +36,12 @@ namespace SilkNETExample
 
         private void View_Update(double obj)
         {
-            throw new NotImplementedException();
+            // Update render state
         }
 
         private void View_Render(double obj)
         {
-            throw new NotImplementedException();
+            // Render frame
         }
 
         private void View_Resize(Silk.NET.Maths.Vector2D<int> obj)
