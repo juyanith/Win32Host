@@ -11,32 +11,33 @@ namespace Sdl2Example
     {
         protected override void InitializeHostedContent()
         {
-            sdlWindow = new(Hwnd);
-            _mapWindowTask = new Task(sdlWindow.Run, TaskCreationOptions.LongRunning);
-            _mapWindowTask.Start();
+            _sdlWindow = new(Hwnd);
+            _renderTask = new Task(_sdlWindow.Run, TaskCreationOptions.LongRunning);
+            _renderTask.Start();
         }
 
         protected override void ResizeHostedContent()
         {
-            if (sdlWindow is not null)
+            if (_sdlWindow is not null)
             {
                 var area = this.GetScaledWindowSize();
-                sdlWindow.Resize((int)area.Width, (int)area.Height);
+                _sdlWindow.Resize((int)area.Width, (int)area.Height);
             }
         }
 
         protected override void UninitializeHostedContent()
         {
-            if (sdlWindow is not null)
+            if (_sdlWindow is not null)
             {
-                sdlWindow.Dispose();
-                sdlWindow = null;
-                _mapWindowTask?.Wait();
-                _mapWindowTask = null;
+                _sdlWindow.Dispose();
+                _sdlWindow = null;
+
+                _renderTask?.Wait();
+                _renderTask = null;
             }
         }
 
-        private Sdl2Window? sdlWindow;
-        private Task? _mapWindowTask;
+        private Sdl2Window? _sdlWindow;
+        private Task? _renderTask;
     }
 }
