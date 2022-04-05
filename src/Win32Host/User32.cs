@@ -110,6 +110,13 @@ namespace Win32Host
         public static IntPtr SetCapture(IntPtr hwnd) => NativeMethods.SetCapture(hwnd);
 
         /// <summary>
+        /// Sets the focus to the specified window.
+        /// </summary>
+        /// <param name="hWnd">A handle to the window that will receive the keyboard input. If this parameter is NULL, keystrokes are ignored.</param>
+        /// <returns>A handle to the window that previously had the keyboard focus, or NULL if the hWnd parameter is invalid.</returns>
+        public static IntPtr SetFocus(IntPtr hWnd) => NativeMethods.SetFocus(hWnd);
+
+        /// <summary>
         /// Releases the mouse capture from a window in the current thread and restores 
         /// normal mouse input processing.
         /// </summary>

@@ -70,6 +70,9 @@ namespace Win32Host
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SetCursorPos(int X, int Y);
 
+        [DllImport("user32.dll")]
+        public static extern IntPtr SetFocus(IntPtr hWnd);
+
         /// <summary>
         /// Struct representing a point.
         /// </summary>
