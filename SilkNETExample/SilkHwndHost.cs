@@ -19,7 +19,7 @@ namespace SilkNETExample
             //_view = SdlWindowing.CreateFrom((void*)Hwnd, sdlContext);
 
             _view = SdlWindowing.CreateFrom((void*)Hwnd);
-
+            
             _view.FramebufferResize += View_FramebufferResize;
             _view.Resize += View_Resize;
             _view.Render += View_Render;
@@ -51,8 +51,12 @@ namespace SilkNETExample
 
         protected override void ResizeHostedContent()
         {
-            // ???
-            //Silk.NET.SDL.
+            //// This doesn't appear to be necessary
+            //if (_view is IWindow window)
+            //{
+            //    var area = this.GetScaledWindowSize();
+            //    window.Size = new Vector2D<int>((int)area.Width, (int)area.Height);
+            //}
         }
 
         protected override void UninitializeHostedContent()
