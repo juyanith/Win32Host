@@ -13,58 +13,55 @@ namespace SilkNETExample
     {
         protected unsafe override void InitializeHostedContent()
         {
-            //INativeContext native;
-            //var sdl = new Sdl(native);
-            //var sdlContext = new SdlContext(sdl, (Window*)Hwnd, null);
-            //_view = SdlWindowing.CreateFrom((void*)Hwnd, sdlContext);
-
-            _view = SdlWindowing.CreateFrom((void*)Hwnd);
+            // IGLContext???
+            var view = SdlWindowing.CreateFrom((void*)Hwnd);
+            _sdlWindow = view as IWindow;
+            if (_sdlWindow is null) throw new Exception("Failed to create SDL window.");
             
-            _view.FramebufferResize += View_FramebufferResize;
-            _view.Resize += View_Resize;
-            _view.Render += View_Render;
-            _view.Update += View_Update;
+            _sdlWindow.FramebufferResize += SDLWindow_FramebufferResize;
+            _sdlWindow.Resize += SDLWindow_Resize;
+            _sdlWindow.Render += SDLWindow_Render;
+            _sdlWindow.Update += SDLWindow_Update;
 
-            _renderTask = new Task(_view.Run, TaskCreationOptions.LongRunning);
+            _renderTask = new Task(_sdlWindow.Run, TaskCreationOptions.LongRunning);
             _renderTask.Start();
         }
 
-        private void View_FramebufferResize(Vector2D<int> obj)
+        private void SDLWindow_FramebufferResize(Vector2D<int> obj)
         {
             throw new NotImplementedException();
         }
 
-        private void View_Update(double obj)
+        private void SDLWindow_Update(double obj)
         {
             // Update render state
         }
 
-        private void View_Render(double obj)
+        private void SDLWindow_Render(double obj)
         {
             // Render frame
         }
 
-        private void View_Resize(Silk.NET.Maths.Vector2D<int> obj)
+        private void SDLWindow_Resize(Silk.NET.Maths.Vector2D<int> obj)
         {
             throw new NotImplementedException();
         }
 
         protected override void ResizeHostedContent()
         {
-            //// This doesn't appear to be necessary
-            //if (_view is IWindow window)
-            //{
-            //    var area = this.GetScaledWindowSize();
-            //    window.Size = new Vector2D<int>((int)area.Width, (int)area.Height);
-            //}
+            if (_sdlWindow is not null)
+            {
+                var area = this.GetScaledWindowSize();
+                _sdlWindow.Size = new Vector2D<int>((int)area.Width, (int)area.Height);
+            }
         }
 
         protected override void UninitializeHostedContent()
         {
-            if (_view is not null)
+            if (_sdlWindow is not null)
             {
-                _view.Dispose();
-                _view = null;
+                _sdlWindow.Dispose();
+                _sdlWindow = null;
             }
 
             if (_renderTask is not null)
@@ -75,7 +72,7 @@ namespace SilkNETExample
             }
         }
 
-        private IView? _view;
+        private IWindow? _sdlWindow;
         private Task? _renderTask;
     }
 }
