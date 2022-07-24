@@ -11,6 +11,8 @@ namespace Sdl2Example
     {
         public Sdl2Window(IntPtr hwnd, bool openGL = false)
         {
+            Hwnd = hwnd;
+
             if (SDL_Init(SDL_INIT_VIDEO) < 0)
             {
                 throw new Sdl2Exception("SDL_Init failed. ", true);

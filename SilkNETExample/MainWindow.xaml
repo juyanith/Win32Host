@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SilkNETExample"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Silk.NET Example" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="180"/>
@@ -15,7 +15,7 @@
         <TextBlock Grid.Column="0"
                    Margin="4"
                    TextWrapping="Wrap"
-                   Text="Example using SDL2-CS for rendering."/>
+                   Text="Example using Silk.NET.Sdl for rendering."/>
 
         <local:SilkHwndHost Grid.Column="1" />
     </Grid>
